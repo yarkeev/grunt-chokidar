@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   var port = 1337;
 
   grunt.initConfig({
-    chokidar: {
+    watcher: {
       nospawn: {
         files: ['lib/nospawn.js'],
         tasks: ['server'],
@@ -56,5 +56,5 @@ module.exports = function(grunt) {
     setTimeout(this.async(), 2000);
   });
 
-  grunt.registerTask('default', ['server', 'chokidar']);
+  grunt.registerTask('default', ['server', 'watcher']);
 };

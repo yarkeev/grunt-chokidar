@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     echo: {
       files: ['lib/*.js'],
     },
-    chokidar: {
+    watcher: {
       files: ['<%= echo.files %>'],
       // Dont make tasks an array
       // To ensure it works with cliArgs: See #115

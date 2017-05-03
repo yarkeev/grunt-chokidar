@@ -1,4 +1,4 @@
-# grunt-chokidar v1.0.0 [![Build Status: Linux](https://travis-ci.org/JimRobs/grunt-chokidar.png?branch=master)](https://travis-ci.org/JimRobs/grunt-chokidar)
+# grunt-watcher v1.0.0 [![Build Status: Linux](https://travis-ci.org/yarkeev/grunt-watcher.svg?branch=master)](https://travis-ci.org/yarkeev/grunt-watcher)
 
 > Run predefined tasks whenever watched file patterns are added, changed or deleted using [chokidar](http://github.com/paulmillr/chokidar).
 
@@ -10,20 +10,20 @@ This plugin requires Grunt `~0.4.0`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-chokidar --save-dev
+npm install grunt-watcher --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-chokidar');
+grunt.loadNpmTasks('grunt-watcher');
 ```
 
 
 
 
-## Chokidar task
-_Run this task with the `grunt chokidar` command._
+## Watcher task
+_Run this task with the `grunt watcher` command._
 
 
 ### Settings
@@ -48,7 +48,7 @@ Whether to spawn task runs in a child process. Setting this option to `false` sp
 
 Example:
 ```js
-watch: {
+watcher: {
   scripts: {
     files: ['**/*.js'],
     tasks: ['jshint'],
@@ -69,7 +69,7 @@ As files are modified this watch task will spawn tasks in child processes. The d
 
 Example:
 ```js
-chokidar: {
+watcher: {
   scripts: {
     files: '**/*.js',
     tasks: ['jshint'],
@@ -88,7 +88,7 @@ How long to wait before emitting events in succession for the same filepath and 
 
 Example:
 ```js
-chokidar: {
+watcher: {
   scripts: {
     files: '**/*.js',
     tasks: ['jshint'],
@@ -113,7 +113,7 @@ Specify the type of watch events that triggers the specified task. This option c
 
 Example:
 ```js
-chokidar: {
+watcher: {
   scripts: {
     files: '**/*.js',
     tasks: ['generateFileManifest'],
@@ -133,7 +133,7 @@ When `reload` is set to `true`, changes to *any* of the watched files will trigg
 This is especially useful if your `Gruntfile.js` is dependent on other files.
 
 ```js
-chokidar: {
+watcher: {
   configFiles: {
     files: [ 'Gruntfile.js', 'config/*.js' ],
     options: {
@@ -156,7 +156,7 @@ Type: `Function`
 This is *only a task level option* and cannot be configured per target. By default when the watch has finished running tasks it will display the message `Completed in 1.301s at Thu Jul 18 2013 14:58:21 GMT-0700 (PDT) - Waiting...`. You can override this message by supplying your own function:
 
 ```js
-chokidar: {
+watcher: {
   options: {
     dateFormat: function(time) {
       grunt.log.writeln('The watch finished in ' + time + 'ms at' + (new Date()).toString());
@@ -186,7 +186,7 @@ If enabled a live reload server will be started with the chokidar task per targe
 
 Example:
 ```js
-chokidar: {
+watcher: {
   css: {
     files: '**/*.sass',
     tasks: ['sass'],
@@ -201,7 +201,7 @@ It's possible to get livereload working over https connections. To do this, pass
 
 Example:
 ```js
-chokidar: {
+watcher: {
   css: {
     files: '**/*.sass',
     tasks: ['sass'],
@@ -235,7 +235,7 @@ Option to prevent the livereload if the executed tasks encountered an error.  If
 ```js
 // Simple config to run jshint any time a file is added, changed or deleted
 grunt.initConfig({
-  chokidar: {
+  watcher: {
     files: ['**/*'],
     tasks: ['jshint'],
   },
@@ -245,7 +245,7 @@ grunt.initConfig({
 ```js
 // Advanced config. Run specific tasks when specific files are added, changed or deleted.
 grunt.initConfig({
-  chokidar: {
+  watcher: {
     gruntfile: {
       files: 'Gruntfile.js',
       tasks: ['jshint:gruntfile'],
@@ -267,7 +267,7 @@ This task will emit a `chokidar` event when watched files are modified. This is 
 
 ```js
 grunt.initConfig({
-  chokidar: {
+  watcher: {
     scripts: {
       files: ['lib/*.js'],
     },
@@ -285,7 +285,7 @@ A very common request is to only compile files as needed. Here is an example tha
 
 ```js
 grunt.initConfig({
-  chokidar: {
+  watcher: {
     scripts: {
       files: ['lib/*.js'],
       tasks: ['jshint'],
@@ -330,7 +330,7 @@ The simplest way to add live reloading to all your chokidar targets is by settin
 
 ```js
 grunt.initConfig({
-  chokidar: {
+  watcher: {
     options: {
       livereload: true,
     },
@@ -346,7 +346,7 @@ You can also configure live reload for individual chokidar targets or run multip
 
 ```js
 grunt.initConfig({
-  chokidar: {
+  watcher: {
     css: {
       files: ['public/scss/*.scss'],
       tasks: ['compass'],
@@ -415,7 +415,7 @@ grunt.initConfig({
       dest: 'dest/css/index.css',
     },
   },
-  chokidar: {
+  watcher: {
     sass: {
       // We watch and compile sass files as normal but don't live reload here
       files: ['src/sass/*.sass'],
@@ -452,30 +452,5 @@ Spawning does cause a performance hit (usually 500ms for most environments). It 
 
 
 ## Release History
- * 2015-07-17   v1.0.0   Replace `gaze` with `chokidar`
- * 2014-03-19   v0.6.1   Fix for watch targets named "default"
- * 2014-03-11   v0.6.0   Clear changed files after triggering live reload to ensure they're only triggered once. cwd option now accepts separate settings for files and spawn. Fix to make interrupt work more than once. Enable live reload over HTTPS. Print newline after initial 'Waiting...' Remove deprecated grunt.util libs Add reload option to specify files other than Gruntfile files to reload. Update to gaze@0.5.1 Use fork of tiny-lr (which has quiter operation, support for HTTPS and windows path fixes) Add livereloadOnError, which if set to false will not trigger live reload if there is an error.
- * 2013-08-25   v0.5.3   Fixed for live reload missing files.
- * 2013-08-16   v0.5.2   Fixed issue running tasks after gruntfile is reloaded. Ignores empty file paths.
- * 2013-07-20   v0.5.1   Fixed issue with options resetting.
- * 2013-07-18   v0.5.0   Added target name to watch event. Added atBegin option to run tasks when watcher starts. Changed nospawn option to spawn (nospawn still available for backwards compatibility). Moved libs/vars into top scope to prevent re-init. Bumped Gaze version to ~0.4. Re-grab task/target options upon each task run. Add dateFormat option to override the date/time output upon completion.
- * 2013-05-27   v0.4.4   Remove gracefully closing SIGINT. Not needed and causes problems for Windows. Ensure tasks are an array to not conflict with cliArgs.
- * 2013-05-11   v0.4.3   Only group changed files per target to send correct files to live reload.
- * 2013-05-09   v0.4.2   Fix for closing watchers.
- * 2013-05-09   v0.4.1   Removed "beep" notification. Tasks now optional with livereload option. Reverted "run again" with interrupt off to fix infinite recursion issue. Watchers now close more properly on task run.
- * 2013-05-03   v0.4.0   Option livereload to start live reload servers. Will reload a Gruntfile before running tasks if Gruntfile is modified. Option event to only trigger watch on certain events. Refactor watch task into separate task runs per target. Option forever to override grunt.fatal/warn to help keeping the watch alive with nospawn enabled. Emit a beep upon complete. Logs all watched files with verbose flag set. If interrupt is off, will run the tasks once more if watch triggered during a previous task run. tasks property is optional for use with watch event. Watchers properly closed when exiting.
- * 2013-02-28   v0.3.1   Fix for top level options.
- * 2013-02-27   v0.3.0   nospawn option added to run tasks without spawning as child processes. Watch emits 'watch' events upon files being triggered with grunt.event. Completion time in seconds and date/time shown after tasks ran. Negate file patterns fixed. Tasks debounced individually to handle simultaneous triggering for multiple targets. Errors handled better and viewable with --stack cli option. Code complexity reduced making the watch task code easier to read.
- * 2013-02-15   v0.2.0   First official release for Grunt 0.4.0.
- * 2013-01-18   v0.2.0rc7   Updating grunt/gruntplugin dependencies to rc6. Changing in-development grunt/gruntplugin dependency versions from tilde version ranges to specific versions.
- * 2013-01-09   v0.2.0rc5   Updating to work with grunt v0.4.0rc5.
- * 2012-12-15   v0.2.0a   Conversion to grunt v0.4 conventions. Remove node v0.6 and grunt v0.3 support. Allow watch task to be renamed. Use grunt.util.spawn "grunt" option. Updated to gaze@0.3.0, forceWatchMethod option removed.
- * 2012-11-01   v0.1.4   Prevent watch from spawning duplicate watch tasks
- * 2012-10-28   v0.1.3   Better method to spawn the grunt bin Bump gaze to v0.2.0. Better handles some events and new option forceWatchMethod Only support Node.js >= v0.8
- * 2012-10-17   v0.1.2   Only spawn a process per task one at a time Add interrupt option to cancel previous spawned process Grunt v0.3 compatibility changes
- * 2012-10-16   v0.1.1   Fallback to global grunt bin if local doesnt exist. Fatal if bin cannot be found Update to gaze 0.1.6
- * 2012-10-08   v0.1.0   Release watch task Remove spawn from helper Run on Grunt v0.4
+ * 2017-05-03   v1.0.0   Fork, rename and update dependencies
 
----
-
-Task submitted by [JimRobs](http://github.com/JimRobs)

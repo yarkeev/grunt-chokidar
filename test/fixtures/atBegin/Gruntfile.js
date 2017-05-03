@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     echo: {
       one: { message: 'one has changed' }
     },
-    chokidar: {
+    watcher: {
       options:{
         atBegin: true
       },

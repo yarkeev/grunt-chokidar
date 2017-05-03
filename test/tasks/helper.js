@@ -20,7 +20,7 @@ helper.assertTask = function assertTask(task, options) {
   options = options || {};
 
   // get next/kill process trigger
-  var trigger = options.trigger || '.*(Waiting).*';
+  var trigger = options.trigger || '.*Waiting.*';
   delete options.trigger;
 
   // CWD to spawn
@@ -40,7 +40,7 @@ helper.assertTask = function assertTask(task, options) {
   // Return an interface for testing this task
   function returnFunc(runs, done) {
     // Spawn the node this process uses
-    var spawnGrunt = spawn(process.argv[0], spawnOptions, {cwd:cwd});
+    var spawnGrunt = spawn(process.argv[0], spawnOptions, {cwd: cwd});
     var out = '';
 
     if (!Array.isArray(runs)) {
@@ -69,7 +69,7 @@ helper.assertTask = function assertTask(task, options) {
       if (shouldRun) {
         setTimeout(function() {
           var run = runs.shift();
-          if (typeof run === 'function') { run(); }
+          if (typeof run === 'function') { run(spawnGrunt); }
         }, 500);
       }
     });

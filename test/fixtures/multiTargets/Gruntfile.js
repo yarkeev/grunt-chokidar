@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       fail: { fail: 1, message: 'This task should fail', wait: 1000 },
       cwd: { message: 'cwd works' },
     },
-    chokidar: {
+    watcher: {
       one: {
         files: ['lib/one.js', 'Gruntfile.js'],
         tasks: 'echo:one',

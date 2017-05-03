@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   'use strict';
 
   grunt.initConfig({
-    chokidar: {
+    watcher: {
       all: {
         files: ['lib/*.js'],
       },
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
     }, 2000);
 
     if (target === 'changeTasks') {
-      grunt.config('chokidar.changeTasks.tasks',['echo:postchange']);
+      grunt.config('watcher.changeTasks.tasks',['echo:postchange']);
     }
   });
 

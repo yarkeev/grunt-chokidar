@@ -63,7 +63,7 @@ module.exports = function(grunt) {
     grunt.log.writeln('').writeln('Reloading watch config...'.cyan);
   });
 
-  grunt.registerTask('chokidar', 'Run predefined tasks whenever watched files change.', function(target) {
+  grunt.registerTask('watcher', 'Run predefined tasks whenever watched files change.', function(target) {
     var self = this;
     var name = self.name || 'chokidar';
 
@@ -119,7 +119,7 @@ module.exports = function(grunt) {
 
       watcher.on('all', function(event, filepath) {
         // Skip events not specified
-        if (!_.contains(target.options.event, 'all') && !_.contains(target.options.event, event)) {
+        if (!_.includes(target.options.event, 'all') && !_.includes(target.options.event, event)) {
           return;
         }
 
