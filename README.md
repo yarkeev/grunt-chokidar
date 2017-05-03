@@ -1,4 +1,4 @@
-# grunt-watcher v1.0.0 [![Build Status: Linux](https://travis-ci.org/yarkeev/grunt-watcher.svg?branch=master)](https://travis-ci.org/yarkeev/grunt-watcher)
+# grunt-watcher v1.0.0 [![Build Status](https://travis-ci.org/yarkeev/grunt-watcher.svg?branch=master)](https://travis-ci.org/yarkeev/grunt-watcher)
 
 > Run predefined tasks whenever watched file patterns are added, changed or deleted using [chokidar](http://github.com/paulmillr/chokidar).
 
