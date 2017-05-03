@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   'use strict';
 
   grunt.initConfig({
-    chokidar: {
+    watcher: {
       negate: {
         files: ['lib/**/*.js', '!lib/sub/*.js'],
         tasks: ['echo'],

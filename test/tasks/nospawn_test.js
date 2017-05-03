@@ -29,13 +29,13 @@ exports.nospawn = {
   nospawn: function(test) {
     test.expect(3);
     var cwd = path.resolve(fixtures, 'nospawn');
-    var assertWatch = helper.assertTask(['server', 'chokidar'], {cwd:cwd});
+    var assertWatch = helper.assertTask(['server', 'watcher'], {cwd: cwd});
     assertWatch(function() {
       var write = 'var nospawn = true;';
       grunt.file.write(path.join(cwd, 'lib', 'nospawn.js'), write);
     }, function(result) {
       helper.verboseLog(result);
-      var count = result.match((new RegExp('Running "chokidar" task', 'g'))).length;
+      var count = result.match((new RegExp('Running "watcher" task', 'g'))).length;
       test.equal(count, 2, 'Watch should have fired twice.');
       test.ok(result.indexOf('Server is listening...') !== -1, 'server should have been started.');
       test.ok(result.indexOf('Server is talking!') !== -1, 'server should have responded.');
@@ -45,15 +45,15 @@ exports.nospawn = {
   interrupt: function(test) {
     test.expect(2);
     var cwd = path.resolve(fixtures, 'nospawn');
-    var assertWatch = helper.assertTask('chokidar', {cwd:cwd});
+    var assertWatch = helper.assertTask('watcher', {cwd: cwd});
     assertWatch([function() {
       var write = 'var interrupt = true;';
       grunt.file.write(path.join(cwd, 'lib', 'interrupt.js'), write);
       setTimeout(function() {
         grunt.file.write(path.join(cwd, 'lib', 'interrupt.js'), write);
       }, 1000);
-    }, function() {
-      // Two functions needed to run two rounds of watching
+    }, function(spawnGrunt) {
+      spawnGrunt.kill('SIGINT');
     }], function(result) {
       helper.verboseLog(result);
       var count = result.match((new RegExp('Running "long" task', 'g'))).length;

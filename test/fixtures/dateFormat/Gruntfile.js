@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     echo: {
       one: { message: 'one has changed' }
     },
-    chokidar: {
+    watcher: {
       options:{
         dateFormat: function(time) {
           grunt.log.writeln('dateFormat has worked! Done in ' + time + 'ms. Waiting...');

@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   var path = require('path');
 
   grunt.initConfig({
-    chokidar: {
+    watcher: {
       options: {
         livereload: true,
       },

@@ -46,7 +46,7 @@ exports.livereload = {
     test.expect(4);
     var resultData = '';
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:basic', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:basic', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(35729, function(data) {
         resultData += data;
@@ -68,7 +68,7 @@ exports.livereload = {
     test.expect(4);
     var resultData = '';
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:customhost', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:customhost', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(8675, function(data) {
         resultData += data;
@@ -89,7 +89,7 @@ exports.livereload = {
   differentfiles: function(test) {
     test.expect(3);
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:differentfiles', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:differentfiles', '-v'], {cwd: cwd});
     assertWatch([function() {
       grunt.file.write(path.join(cwd, 'lib', 'one.js'), 'var one = true;');
     }, function() {
@@ -108,7 +108,7 @@ exports.livereload = {
     test.expect(4);
     var resultData = '';
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:multiplefiles', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:multiplefiles', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(9876, function(data) {
         resultData += data;
@@ -132,7 +132,7 @@ exports.livereload = {
     test.expect(4);
     var resultData = '';
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:nospawn', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:nospawn', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(1337, function(data) {
         resultData += data;
@@ -154,7 +154,7 @@ exports.livereload = {
     test.expect(3);
     var resultData = '';
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:notasks', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:notasks', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(35729, function(data) {
         resultData += data;
@@ -174,7 +174,7 @@ exports.livereload = {
   onlytriggeron: function(test) {
     test.expect(2);
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(35729, function() {
         grunt.file.write(path.join(cwd, 'sass', 'one.scss'), '#one {}');
@@ -192,7 +192,7 @@ exports.livereload = {
   livereloadOnErrorTrue: function(test) {
     test.expect(1);
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:livereloadOnErrorTrue', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:livereloadOnErrorTrue', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(35729, function() {
         grunt.file.write(path.join(cwd, 'lib', 'one.js'), 'var one = true;');
@@ -207,7 +207,7 @@ exports.livereload = {
   livereloadOnErrorFalse: function(test) {
     test.expect(1);
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:livereloadOnErrorFalse', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:livereloadOnErrorFalse', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(35729, function() {
         grunt.file.write(path.join(cwd, 'lib', 'one.js'), 'var one = true;');
@@ -223,7 +223,7 @@ exports.livereload = {
   livereloadOnErrorFalseNoSpawn: function(test) {
     test.expect(1);
     var cwd = path.resolve(fixtures, 'livereload');
-    var assertWatch = helper.assertTask(['chokidar:livereloadOnErrorFalseNoSpawn', '-v'], {cwd: cwd});
+    var assertWatch = helper.assertTask(['watcher:livereloadOnErrorFalseNoSpawn', '-v'], {cwd: cwd});
     assertWatch([function() {
       request(35729, function() {
         grunt.file.write(path.join(cwd, 'lib', 'one.js'), 'var one = true;');

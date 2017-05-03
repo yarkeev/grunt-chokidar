@@ -27,7 +27,7 @@ exports.fail = {
   warn: function(test) {
     test.expect(1);
     var cwd = path.resolve(fixtures, 'fail');
-    var assertWatch = helper.assertTask('chokidar:warn', {cwd: cwd});
+    var assertWatch = helper.assertTask('watcher:warn', {cwd: cwd});
     assertWatch([function() {
       grunt.file.write(path.join(cwd, 'lib/one.js'), 'var one = true;');
     }, function() {
@@ -41,7 +41,7 @@ exports.fail = {
   fatal: function(test) {
     test.expect(1);
     var cwd = path.resolve(fixtures, 'fail');
-    var assertWatch = helper.assertTask('chokidar:fatal', {cwd: cwd});
+    var assertWatch = helper.assertTask('watcher:fatal', {cwd: cwd});
     assertWatch([function() {
       grunt.file.write(path.join(cwd, 'lib/one.js'), 'var one = true;');
     }, function() {
